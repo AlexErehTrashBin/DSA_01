@@ -1,3 +1,5 @@
+package ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.tests;
+
 import org.junit.Test;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.ClassDescription;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Field;

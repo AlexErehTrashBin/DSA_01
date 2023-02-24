@@ -1,7 +1,10 @@
+package ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.tests;
+
 import org.junit.Test;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.AccessLevel;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Method;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Parameter;
+import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.utils.MethodUtils;
 
 public class MethodTests {
 	@Test
@@ -29,6 +32,6 @@ public class MethodTests {
 	    "call1();\ncall2();\ncall3();"
 		);
 		method.setFinal(true);
-		System.out.println(method);
+		MethodUtils.writeAllInfoAboutMethods(method);
 	}
 }
