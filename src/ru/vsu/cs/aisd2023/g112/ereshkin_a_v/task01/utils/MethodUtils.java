@@ -10,12 +10,14 @@ public class MethodUtils {
 		System.out.printf("Возвращаемый тип метода: %s%n", method.getReturnType());
 		System.out.printf("Модификатор доступа метода: %s%n", method.getAccessLevel());
 		System.out.printf("Метод статичен: %b%n", method.isStatic());
+		System.out.printf("Метод финализирован: %b%n", method.isFinal());
 		System.out.printf("Количество параметров метода: %d%n", method.getNumberOfParameters());
 		System.out.println("-----------------------------------");
 	}
 	public static void writeAllInfoAboutMethods(Method... methods){
 		for (Method method : methods) {
 			writeAllInfoAboutMethod(method);
+			System.out.println();
 		}
 	}
 }

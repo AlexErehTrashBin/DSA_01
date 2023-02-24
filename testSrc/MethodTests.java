@@ -7,8 +7,8 @@ public class MethodTests {
 	@Test
 	public void test1(){
 		Method method1 = new Method("someMethod","String",
-				new AccessLevel(""),
-				false);
+				AccessLevel.PUBLIC,
+				false, false);
 		Parameter parameter1 = new Parameter("int", "age");
 		Parameter parameter2 = new Parameter("TestClass", "testClass");
 		method1.addParameter(parameter1);
@@ -16,7 +16,19 @@ public class MethodTests {
 		System.out.println(method1);
 		method1.setStatic(true);
 		System.out.println(method1);
-		method1.setAccessLevel(new AccessLevel("public"));
+		method1.setAccessLevel(AccessLevel.PUBLIC);
 		System.out.println(method1);
+		method1.setBody("someCall();");
+		method1.setReturnType("void");
+		System.out.println(method1);
+	}
+	@Test
+	public void test2(){
+		Method method = new Method("bruhMethod", "void");
+		method.setBody(
+	    "call1();\ncall2();\ncall3();"
+		);
+		method.setFinal(true);
+		System.out.println(method);
 	}
 }
