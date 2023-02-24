@@ -13,7 +13,7 @@ public class ClassDescription {
 	private Set<Method> methods;
 	private Set<String> parentInterfacesNames;
 	private Set<String> parentClassesNames;
-	private AccessLevel accessLevel = AccessLevel.PUBLIC;
+	private AccessLevel accessLevel = AccessLevel.PACKAGE_PRIVATE;
 
 	public ClassDescription(String name) {
 		setName(name);
