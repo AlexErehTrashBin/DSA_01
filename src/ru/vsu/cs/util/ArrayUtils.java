@@ -211,52 +211,14 @@ public class ArrayUtils {
     }
     */
 
-    public static int[] readIntArrayFromConsole(String arrName) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            try {
-                if (arrName == null || arrName.length() == 0) {
-                    arrName = "";
-                } else {
-                    arrName = " " + arrName;
-                }
-                System.out.printf("Введите массив%s:%n", arrName);
-                String line = scanner.nextLine();
-                return toIntArray(line);
-            } catch(Exception e) {
-                System.out.print("Вы ошиблись, попробуйте еще раз! ");
-            }
-        }
-    }
-
     public static int[] readIntArrayFromConsole() {
         return readIntArrayFromConsole(null);
-    }
-
-    public static double[] readDoubleArrayFromConsole(String arrName) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            try {
-                if (arrName == null || arrName.length() == 0) {
-                    arrName = "";
-                } else {
-                    arrName = " " + arrName;
-                }
-                System.out.printf("Введите массив%s:%n", arrName);
-                String line = scanner.nextLine();
-                return toDoubleArray(line);
-            }
-            catch(Exception e) {
-                System.out.print("Вы ошиблись, попробуйте еще раз! ");
-            }
-        }
     }
 
     public static double[] readDoubleArrayFromConsole() {
         return readDoubleArrayFromConsole(null);
     }
 
-    /*
     // Вариант с ипользованием дженериков и функциональных интерфейсов (Java 8 и старше)
 
     public static <T> T readFromConsole(String name, java.util.function.Function<String, T> converter) {
@@ -287,7 +249,6 @@ public class ArrayUtils {
     public static double[] readDoubleArrayFromConsole(String arrName) {
         return readArrayFromConsole(arrName, ArrayUtils::toDoubleArray);
     }
-    */
 
 
     /**
@@ -370,7 +331,7 @@ public class ArrayUtils {
     /**
      * Чтение двухмерного массива int[][] с консоли;
      * checkMatrix - задает режим, при котором,
-     * если строки содержат разное кол-во элементот, то
+     * если строки содержат разное кол-во элементов, то
      * это считается ошибкой и предлагается повторить ввод
      */
     public static int[][] readIntArray2FromConsole() {
@@ -379,7 +340,7 @@ public class ArrayUtils {
 
     /* Чтение двухмерного массива double[][] с консоли;
      * checkMatrix - задает режим, при котором,
-     * если строки содержат разное кол-во элементот, то
+     * если строки содержат разное кол-во элементов, то
      * это считается ошибкой и предлагается повторить ввод
      */
     public static double[][] readDoubleArray2FromConsole(String arrName, boolean checkMatrix) {
@@ -417,7 +378,7 @@ public class ArrayUtils {
 
     /* Чтение двухмерного массива int[][] с консоли;
      * checkMatrix - задает режим, при котором,
-     * если строки содержат разное кол-во элементот, то
+     * если строки содержат разное кол-во элементов, то
      * это считается ошибкой и предлагается повторить ввод
      */
     public static double[][] readDoubleArray2FromConsole() {
@@ -563,7 +524,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Cоздание одномерного массива целых чисел, заполненного случайными числами
+     * Создание одномерного массива целых чисел, заполненного случайными числами
      * @param length Кол-во элементов в массиве
      * @param minValue Минимальное значение для случайных чисел (включая)
      * @param maxValue Максимальное значение (не включая)
@@ -584,7 +545,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Cоздание двухмерного массива целых чисел, заполненного случайными числами
+     * Создание двухмерного массива целых чисел, заполненного случайными числами
      * @param rowCount Кол-во сток в двумерном массиве
      * @param colCount Кол-во столбцов (элементов в каждой строке)
      * @param minValue Минимальное значение для случайных чисел (включая)
