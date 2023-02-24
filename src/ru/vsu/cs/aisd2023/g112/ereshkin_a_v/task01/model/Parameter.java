@@ -46,6 +46,6 @@ public class Parameter {
 
 		Parameter parameter = (Parameter) o;
 
-		return name.equals(parameter.name);
+		return haveSameName(parameter);
 	}
 }
