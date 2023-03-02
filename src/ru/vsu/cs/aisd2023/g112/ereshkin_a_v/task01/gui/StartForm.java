@@ -1,10 +1,12 @@
 package ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.gui;
 
+import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.gui.classgen.ClassGenerationForm;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.utils.GUIUtils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.io.File;
 
 public class StartForm extends JFrame {
@@ -16,7 +18,9 @@ public class StartForm extends JFrame {
 	private JButton exitButton;
 	private JPanel panelMain;
 
-	public StartForm(){
+	private final ClassGenerationForm classGenerationForm;
+
+	public StartForm() {
 		this.setTitle("StartForm");
 		this.setContentPane(panelMain);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,23 +32,30 @@ public class StartForm extends JFrame {
 		fileChooserOpen.setCurrentDirectory(new File("."));
 		fileChooserOpen.addChoosableFileFilter(filter);
 
-		GUIUtils.addActionListenerToButton(newClassButton, () -> {
+		classGenerationForm = new ClassGenerationForm("");
+
+		GUIUtils.addActionListener(newClassButton, () -> {
 			this.setVisible(false);
-			java.awt.EventQueue.invokeLater(() -> new ClassGenerationForm(null).setVisible(true));
+			EventQueue.invokeLater(() -> new ClassGenerationForm(null).setVisible(true));
 		});
 
-		GUIUtils.addActionListenerToButton(fromFileButton, () -> {
+		GUIUtils.addActionListener(fromFileButton, () -> {
 			if (fileChooserOpen.showOpenDialog(panelMain) == JFileChooser.APPROVE_OPTION) {
 				String filePath = fileChooserOpen.getSelectedFile().getPath();
-				java.awt.EventQueue.invokeLater(() -> {
+				EventQueue.invokeLater(() -> {
 					this.setVisible(false);
-					new ClassGenerationForm(filePath).setVisible(true);
+
+					classGenerationForm.setPath(filePath);
+					classGenerationForm.setVisible(true);
 				});
 			}
 		});
 
-		GUIUtils.addActionListenerToButton(settingsButton, () -> {});
+		GUIUtils.addActionListener(settingsButton, () -> {
 
-		GUIUtils.addActionListenerToButton(exitButton, () -> System.exit(0));
+		});
+
+		GUIUtils.addActionListener(exitButton, () -> System.exit(0));
 	}
+
 }

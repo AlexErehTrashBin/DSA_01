@@ -25,4 +25,10 @@ public class FieldUtils {
 			System.out.println();
 		}
 	}
+
+	public static Field getDefault(){
+		Field result = new Field("int", "sampleInt", "1");
+		result.setFinal(true);
+		return result;
+	}
 }

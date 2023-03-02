@@ -46,18 +46,10 @@ public class ClassDescription {
 		this.name = name;
 	}
 
-	public Set<Field> getFields() {
-		return fields;
-	}
-
 	public Set<String> getFieldNames() {
 		Set<String> result = new HashSet<>();
 		fields.forEach(it -> result.add(it.getName()));
 		return result;
-	}
-
-	public Set<Method> getMethods() {
-		return methods;
 	}
 
 	public Set<String> getMethodNames() {
@@ -67,11 +59,11 @@ public class ClassDescription {
 	}
 
 	public Set<String> getParentInterfacesNames() {
-		return parentInterfacesNames;
+		return new HashSet<>(parentInterfacesNames);
 	}
 
 	public Set<String> getParentClassesNames() {
-		return parentClassesNames;
+		return new HashSet<>(parentClassesNames);
 	}
 
 	public void addMethods(Method... methods) {
@@ -118,31 +110,97 @@ public class ClassDescription {
 		fields.clear();
 	}
 
-	private String getMethodPreprocessed(String text) {
+	public void clearParentInterfaces() {
+		parentInterfacesNames.clear();
+	}
+
+	public void clearParentClasses() {
+		parentClassesNames.clear();
+	}
+
+	public void clearAllElements() {
+		clearMethods();
+		clearFields();
+	}
+
+	public void clearAllExtendsImplements() {
+		clearParentInterfaces();
+		clearParentClasses();
+	}
+
+	public void clearAll() {
+		clearAllExtendsImplements();
+		clearAllElements();
+	}
+
+	private String getElementPreprocessed(String text) {
 		return StringUtils.getTabulatedNTimes(text, 1);
+	}
+
+
+	private <T extends AbstractClassElement> void replace(
+			Set<T> set, String name, T newElement) {
+		for (T elementInSet : set) {
+			if (Objects.equals(elementInSet.getName(), name)){
+				set.remove(elementInSet);
+				break;
+			}
+		}
+		set.add(newElement);
+	}
+
+	public <T extends AbstractClassElement> void replaceOrCreateElement(String elementName, T newElement) {
+		if (newElement instanceof Field) {
+			replace(fields, elementName, (Field) newElement);
+		}
+		if (newElement instanceof Method) {
+			replace(methods, elementName, (Method) newElement);
+		}
 	}
 
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		/// Построение первой строки
-		sb.append("class ").append(name).append(" {").append("\n");
+
+		sb.append(accessLevel.getModifierCode());
+		if (accessLevel != AccessLevel.PACKAGE_PRIVATE) sb.append(' ');
+		sb.append("class ").append(name);
+
+		// Вставка классов, от которых наследуется текущий
+		Set<String> extendsSet = getParentClassesNames();
+		if (!extendsSet.isEmpty()) {
+			sb.append("extends ");
+			sb.append(String.join(", ", extendsSet));
+			sb.append(' ');
+		}
+
+		// Вставка интерфейсов, которые реализует текущий класс
+		Set<String> implementsSet = getParentInterfacesNames();
+		if (!implementsSet.isEmpty()) {
+			sb.append("implements ");
+			sb.append(String.join(", ", implementsSet));
+			sb.append(' ');
+		}
+
+		if (implementsSet.isEmpty() && extendsSet.isEmpty()) sb.append(' ');
+		sb.append('{').append('\n');
 
 		/// Построение тела класса
 		// Вставка полей
 		for (Field field : fields) {
-			String constantString = field.toString();
-			sb.append(Objects.equals(constantString, "") ? "" : "\t" + constantString + "\n");
+			String constantString = getElementPreprocessed(field.toString());
+			sb.append(Objects.equals(constantString, "") ? "" : constantString + '\n');
 		}
 		// Вставка дополнительного разрыва строки, разделяющего объявления полей и методов
 		if (!fields.isEmpty() && !methods.isEmpty()) sb.append("\n");
 		// Вставка методов
 		for (Method method : methods) {
-			String methodString = getMethodPreprocessed(method.toString());
-			sb.append(Objects.equals(methodString, "") ? "" : methodString + "\n");
+			String methodString = getElementPreprocessed(method.toString());
+			sb.append(Objects.equals(methodString, "") ? "" : methodString + '\n');
 		}
 		/// Построение последней строки
-		sb.append("}");
+		sb.append('}');
 		return sb.toString();
 	}
 }

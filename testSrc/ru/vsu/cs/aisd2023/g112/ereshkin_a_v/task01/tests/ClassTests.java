@@ -49,5 +49,13 @@ public class ClassTests {
 		classDescription.addMethods(method1, method2, method3);
 
 		ClassUtils.writeAllInfoAboutClasses(classDescription);
+
+		//classDescription.clearAll();
+
+		ClassUtils.writeAllInfoAboutClasses(classDescription);
+
+		classDescription.replaceOrCreateElement("method3", new Method("method7", "int"));
+
+		ClassUtils.writeAllInfoAboutClasses(classDescription);
 	}
 }

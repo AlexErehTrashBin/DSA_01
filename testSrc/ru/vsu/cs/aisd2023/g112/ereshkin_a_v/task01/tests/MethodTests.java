@@ -22,7 +22,7 @@ public class MethodTests {
 		method1.setAccessLevel(AccessLevel.PUBLIC);
 		System.out.println(method1);
 		method1.setBody("someCall();");
-		method1.setReturnType("void");
+		method1.setType("void");
 		System.out.println(method1);
 	}
 	@Test

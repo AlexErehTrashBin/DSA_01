@@ -10,7 +10,7 @@ public class MethodUtils {
 
 		System.out.println("-----------------------------------");
 		System.out.printf("Имя метода: %s%n", method.getName());
-		System.out.printf("Возвращаемый тип метода: %s%n", method.getReturnType());
+		System.out.printf("Возвращаемый тип метода: %s%n", method.getType());
 		System.out.printf("Модификатор доступа метода: %s%n", accessLevelString);
 		System.out.printf("Метод помечен как static: %b%n", method.isStatic());
 		System.out.printf("Метод помечен как final: %b%n", method.isFinal());
@@ -24,5 +24,13 @@ public class MethodUtils {
 			writeAllInfoAboutMethod(method);
 			System.out.println();
 		}
+	}
+
+	public static Method getDefaultMethod(){
+		Method method = new Method("main", "void");
+		method.setBody("return;");
+		method.setAccessLevel(AccessLevel.PUBLIC);
+		method.setStatic(true);
+		return method;
 	}
 }

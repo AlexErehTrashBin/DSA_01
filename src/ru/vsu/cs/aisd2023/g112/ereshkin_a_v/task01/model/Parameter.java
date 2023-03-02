@@ -2,7 +2,7 @@ package ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model;
 
 import java.util.Objects;
 
-public class Parameter {
+public class Parameter implements AbstractParameter {
 	private String type;
 	private String name;
 
@@ -11,7 +11,7 @@ public class Parameter {
 		this.name = name;
 	}
 
-	public boolean haveSameName(Parameter other){
+	public boolean haveSameName(Parameter other) {
 		return Objects.equals(this.name, other.name);
 	}
 
@@ -35,10 +35,7 @@ public class Parameter {
 	public String toString() {
 		return type + " " + name;
 	}
-	/**
-	 * Сгенерировано идеей; самое главное - сравнение идёт только по названию.
-	 * В объявлении метода не может быть нескольких параметров с одним названием.
-	 * */
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
