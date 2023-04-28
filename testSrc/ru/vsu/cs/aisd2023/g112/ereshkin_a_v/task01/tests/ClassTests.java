@@ -5,11 +5,11 @@ import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.ClassDescription;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Field;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Method;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Parameter;
-import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.utils.ClassUtils;
+import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.utils.ClassUtils;
 
 public class ClassTests {
 	@Test
-	public void testBodyTabulations(){
+	public void testBodyTabulations() {
 		ClassDescription classDescription = new ClassDescription("SampleClass");
 		Method method = new Method("bruh", "void");
 		method.setStatic(true);
@@ -23,16 +23,18 @@ public class ClassTests {
 		classDescription.clearFields();
 		System.out.println(classDescription);
 	}
+
 	@Test
-	public void testExtendsImplements(){
+	public void testExtendsImplements() {
 		ClassDescription description = new ClassDescription("SampleClass");
 		description.addMethods(new Method("testMethodName", "String"));
 		ClassUtils.writeAllInfoAboutClasses(description);
 		//description.addImplements();
 		//description.addExtends();
 	}
+
 	@Test
-	public void baseTests(){
+	public void baseTests() {
 		ClassDescription classDescription = new ClassDescription("TestClass");
 
 		Field field1 = new Field("int", "field1");
