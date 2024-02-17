@@ -60,11 +60,19 @@ public class ClassDescription {
 		fields.forEach(it -> result.add(it.getName()));
 		return result;
 	}
+	public Set<Field> getFields() {
+		return new HashSet<>(fields);
+	}
+
 
 	public Set<String> getMethodNames() {
 		Set<String> result = new HashSet<>();
 		methods.forEach(it -> result.add(it.getName()));
 		return result;
+	}
+
+	public Set<Method> getMethods() {
+		return new HashSet<>(methods);
 	}
 
 	public Set<String> getParentInterfacesNames() {
@@ -73,6 +81,12 @@ public class ClassDescription {
 
 	public Set<String> getParentClassesNames() {
 		return new HashSet<>(parentClassesNames);
+	}
+	public void addParentInterfaceName(String name){
+		parentInterfacesNames.add(name);
+	}
+	public void addParentClassName(String name){
+		parentClassesNames.add(name);
 	}
 
 	public void addMethods(Method... methods) {
@@ -173,7 +187,10 @@ public class ClassDescription {
 
 		sb.append(accessLevel.getModifierCode());
 		if (accessLevel != AccessLevel.PACKAGE_PRIVATE) sb.append(' ');
-		sb.append("class ").append(name);
+		if (isStatic) sb.append("static ");
+		sb.append("class ").append(name).append(" ");
+
+		if (name.isEmpty()) sb.append("<EMPTY>");
 
 		// Вставка классов, от которых наследуется текущий
 		Set<String> extendsSet = getParentClassesNames();

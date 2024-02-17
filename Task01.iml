@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01" />
       <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -12,5 +13,6 @@
     <orderEntry type="module" module-name="GUI" />
     <orderEntry type="module" module-name="Model" />
     <orderEntry type="module" module-name="SolomatinUtils" />
+    <orderEntry type="module" module-name="Serializer" />
   </component>
 </module>

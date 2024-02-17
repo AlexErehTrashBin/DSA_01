@@ -6,6 +6,7 @@ import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Field;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Method;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Parameter;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.utils.ClassUtils;
+import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.serializer.ClassSerializer;
 
 public class ClassTests {
 	@Test
@@ -49,15 +50,13 @@ public class ClassTests {
 		Method method3 = new Method("method3", "void");
 
 		classDescription.addMethods(method1, method2, method3);
-
-		ClassUtils.writeAllInfoAboutClasses(classDescription);
-
-		//classDescription.clearAll();
+		System.out.println(ClassSerializer.serialize(classDescription));
+		/*ClassUtils.writeAllInfoAboutClasses(classDescription);
 
 		ClassUtils.writeAllInfoAboutClasses(classDescription);
 
 		classDescription.replaceOrCreateElement("method3", new Method("method7", "int"));
 
-		ClassUtils.writeAllInfoAboutClasses(classDescription);
+		ClassUtils.writeAllInfoAboutClasses(classDescription);*/
 	}
 }

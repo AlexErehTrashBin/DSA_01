@@ -1,0 +1,5 @@
+CLASS//X//X//SampleClass//[EEEE, EEEEEEEEEEEEEEEEEE]//[Bruh]
+FIELD//X//X//X//int//testInt//1//0
+FIELD//X//X//X//double//double1//4//null
+FIELD//X//S//F//int//TEST_INT_2//3//300
+FIELD//X//X//X//int//testInt1//1//3

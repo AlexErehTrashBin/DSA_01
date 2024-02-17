@@ -8,13 +8,16 @@ import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.gui.utils.GUIUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddDialog extends JDialog {
 	private JPanel contentPane;
 	private JButton methodButton;
 	private JButton buttonCancel;
 	private JButton fieldButton;
-	private JButton extendsImplementsButton;
+	private JButton addImplementButton;
+	private JButton addExtendsButton;
 
 	public AddDialog(ClassDescription description) {
 		setContentPane(contentPane);
@@ -35,9 +38,13 @@ public class AddDialog extends JDialog {
 			setVisible(false);
 			new AddFieldDialog(description).setVisible(true);
 		}));
-		GUIUtils.addActionListener(extendsImplementsButton, () -> EventQueue.invokeLater(() -> {
+		GUIUtils.addActionListener(addExtendsButton, () -> EventQueue.invokeLater(() -> {
 			setVisible(false);
-			new AddExtendsImplementsDialog(description).setVisible(true);
+			new AddExtendsImplementsDialog(description, 0).setVisible(true);
+		}));
+		GUIUtils.addActionListener(addImplementButton, () -> EventQueue.invokeLater(() -> {
+			setVisible(false);
+			new AddExtendsImplementsDialog(description, 1).setVisible(true);
 		}));
 		GUIUtils.addActionListener(buttonCancel, () -> setVisible(false));
 	}

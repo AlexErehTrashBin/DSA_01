@@ -12,7 +12,7 @@ import java.io.File;
 public class StartForm extends JFrame {
 	private static final int DEFAULT_WIDTH = 400;
 	private static final int DEFAULT_HEIGHT = 400;
-	private final ClassGenerationForm classGenerationForm;
+	private ClassGenerationForm classGenerationForm;
 	private JButton newClassButton;
 	private JButton fromFileButton;
 	private JButton settingsButton;
@@ -31,7 +31,7 @@ public class StartForm extends JFrame {
 		fileChooserOpen.setCurrentDirectory(new File("."));
 		fileChooserOpen.addChoosableFileFilter(filter);
 
-		classGenerationForm = new ClassGenerationForm("");
+		classGenerationForm = new ClassGenerationForm(null);
 
 		GUIUtils.addActionListener(newClassButton, () -> {
 			this.setVisible(false);
@@ -44,7 +44,7 @@ public class StartForm extends JFrame {
 				EventQueue.invokeLater(() -> {
 					this.setVisible(false);
 
-					classGenerationForm.setPath(filePath);
+					classGenerationForm = new ClassGenerationForm(filePath);
 					classGenerationForm.setVisible(true);
 				});
 			}

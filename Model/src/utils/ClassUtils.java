@@ -3,6 +3,9 @@ package ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.utils;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.AccessLevel;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.ClassDescription;
 import ru.vsu.cs.aisd2023.g112.ereshkin_a_v.task01.model.Field;
+import ru.vsu.cs.util.ArrayUtils;
+
+import java.io.FileNotFoundException;
 
 public class ClassUtils {
 	private static void writeAllInfoAboutClass(ClassDescription description) {
@@ -25,8 +28,24 @@ public class ClassUtils {
 		}
 	}
 
-	public static ClassDescription loadClassFromFile(String path) {
-		return new ClassDescription("TestClass");
+	public static ClassDescription loadClassFromFile(String path) throws FileNotFoundException {
+		String[] lines = ArrayUtils.readLinesFromFile(path);
+		String declaration = lines[0];
+		AccessLevel level = AccessLevel.PACKAGE_PRIVATE;
+		boolean isStatic = false;
+		if (declaration.contains("public")) level = AccessLevel.PUBLIC;
+		if (declaration.contains("static")) isStatic = true;
+		declaration = declaration.replace("public ", "");
+		declaration = declaration.replace("static ", "");
+		StringBuilder nameSB = new StringBuilder();
+		for (int i = 0; declaration.charAt(i) != ' '; i++) {
+			nameSB.append(declaration.charAt(i));
+		}
+		String name = nameSB.toString();
+		ClassDescription description = new ClassDescription(name);
+		description.setAccessLevel(level);
+		description.setStatic(isStatic);
+		return new ClassDescription(name);
 	}
 
 	public static ClassDescription getDefaultClass() {

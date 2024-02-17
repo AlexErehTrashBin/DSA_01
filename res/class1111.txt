@@ -1,0 +1,6 @@
+CLASS//X//X//SampleClass//[]//[]
+FIELD//X//X//X//int//testInt1//1//3
+FIELD//X//S//F//int//TEST_INT_2//3//300
+FIELD//X//X//X//double//double1//4//null
+FIELD//X//X//X//int//testInt//1//0
+METHOD//A//S//X//void//main//7//return;

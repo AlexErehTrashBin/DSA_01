@@ -18,6 +18,15 @@ public class AccessComboBoxModel implements ComboBoxModel<AccessLevel> {
 		selectedItem = AccessLevel.PACKAGE_PRIVATE;
 	}
 
+	public AccessComboBoxModel(boolean isClass) {
+		this.accessLevelList = new ArrayList<>();
+		if (isClass) {
+			accessLevelList.add(AccessLevel.PUBLIC);
+			accessLevelList.add(AccessLevel.PACKAGE_PRIVATE);
+		}
+		selectedItem = AccessLevel.PACKAGE_PRIVATE;
+	}
+
 	@Override
 	public AccessLevel getSelectedItem() {
 		return selectedItem;

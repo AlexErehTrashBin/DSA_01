@@ -20,6 +20,9 @@ public class Method extends ClassElement {
 
 	public Method(String name, String type) {
 		super(type, name);
+		setAccessLevel(AccessLevel.PACKAGE_PRIVATE);
+		setStatic(false);
+		setFinal(false);
 		initParameters();
 	}
 
@@ -68,7 +71,7 @@ public class Method extends ClassElement {
 		// Обработка тела метода
 		String preprocessedBody = getPreprocessedBody(body);
 		sb.append(preprocessedBody);
-		if (!preprocessedBody.equals("")) sb.append("\n");
+		if (!preprocessedBody.isEmpty()) sb.append("\n");
 		// Обработка закрывающей фигурной скобки
 		sb.append("}");
 		return sb.toString();
